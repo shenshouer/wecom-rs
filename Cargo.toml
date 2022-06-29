@@ -1,5 +1,5 @@
 [package]
-name = "wecom"
+name = "wecom-rs"
 version = "0.1.0"
 edition = "2021"
 description = "企业微信Rust版SDK"
