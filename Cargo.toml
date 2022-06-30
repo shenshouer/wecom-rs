@@ -19,3 +19,4 @@ async-trait = "0.1.56"
 [dev-dependencies]
 anyhow = "1.0.57"
 dotenv = "0.15.0"
+tracing-subscriber = "0.3.12"
