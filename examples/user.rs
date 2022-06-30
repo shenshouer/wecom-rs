@@ -10,7 +10,7 @@ async fn main() -> Result<()> {
     tracing_subscriber::fmt::init();
 
     let client = Client::new(env::var("CORP_ID")?, env::var("CORP_SECRET")?);
-    // create user
+
     // client
     //     .user_create(wecom_rs::client::ParamsCreateUser::new_simple(
     //         "test20220630@ipalfish.com".to_string(),
@@ -18,16 +18,26 @@ async fn main() -> Result<()> {
     //         "18612424367".to_string(),
     //         vec![1361979], // 运维研发
     //     ))
-    // .await?;
+    //     .await?;
 
-    // get user
+    // client
+    //     .user_update(wecom_rs::client::ParamsUpdateUser {
+    //         user_id: "test20220630@ipalfish.com".to_string(),
+    //         name: Some("测试邮箱111".to_string()),
+    //         ..Default::default()
+    //     })
+    //     .await?;
+
     // let user = client.user_get("test20220630@ipalfish.com").await?;
     // debug!("user_get: {}", serde_json::to_string(&user)?);
 
     // client.user_delete("test20220630@ipalfish.com").await?;
 
-    let uids_delete = vec!["test20220630@ipalfish.com"];
-    client.user_batch_delete(&uids_delete).await?;
+    // let uids_delete = vec!["test20220630@ipalfish.com"];
+    // client.user_batch_delete(&uids_delete).await?;
+
+    let users = client.user_list(1361979).await?;
+    debug!("user_list: {}", serde_json::to_string(&users)?);
 
     Ok(())
 }
