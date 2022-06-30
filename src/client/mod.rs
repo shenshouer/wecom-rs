@@ -74,17 +74,24 @@ impl Client {
     }
 }
 
-pub trait ContactManager: DepartmentManager + UserManager {}
-impl ContactManager for Client {}
-
-// /// 客户管理
-// pub trait ExternalContactManager {
-//     // TODO:
-// }
-
-// pub trait CustomerServiceManager {
-//     // TODO:
-// }
 /// 通讯录管理
-pub mod contact;
-pub use contact::{DepartmentManager, UserManager};
+mod contact;
+pub use contact::*;
+
+/// 客户联系管理
+mod external_contact;
+pub use external_contact::*;
+/// 微信客服
+mod wechat_custom_service;
+pub use wechat_custom_service::*;
+/// 身份验证
+mod auth;
+pub use auth::*;
+/// 应用管理
+mod app;
+pub use app::*;
+/// 消息推送
+mod message_push;
+pub use message_push::*;
+
+// TODO: 其他功能模块接口实现

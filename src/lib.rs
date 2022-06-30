@@ -1,9 +1,6 @@
 /// 客户端
 pub mod client;
-pub use client::{
-    contact::{DepartmentManager, UserManager},
-    Client, ContactManager,
-};
+pub use client::*;
 /// 参数相关
 mod dto;
 /// 错误定义
