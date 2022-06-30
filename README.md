@@ -5,3 +5,7 @@
 
 ## doc
 [crates.io](https://crates.io/crates/wecom-rs)
+
+## examples
+
+[examples](./examples)
