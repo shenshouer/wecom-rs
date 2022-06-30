@@ -22,6 +22,8 @@ pub trait UserManager {
     async fn user_batch_delete(&self, userids: &[&str]) -> Result<()>;
     /// 获取部门成员
     async fn user_list(&self, department_id: u64) -> Result<UserList>;
+    /// 通过手机号获取uid
+    async fn userid_get(&self, mobile: &str) -> Result<String>;
 }
 
 #[async_trait]
@@ -106,4 +108,24 @@ impl UserManager for Client {
 
         Ok(resp.data)
     }
+
+    /// https://developer.work.weixin.qq.com/document/path/95402
+    async fn userid_get(&self, mobile: &str) -> Result<String> {
+        let token = self.access_token().await?;
+        let resp = self
+            .request::<Response<GetUserIdResponse>>(
+                Method::POST,
+                &format!("{BASE_URL}/user/getuserid?access_token={token}"),
+                Some(serde_json::json!({ "mobile": mobile })),
+            )
+            .await?;
+
+        Ok(resp.data.userid)
+    }
+}
+
+use serde::{Deserialize, Serialize};
+#[derive(Debug, Deserialize, Serialize, Default)]
+struct GetUserIdResponse {
+    userid: String,
 }
