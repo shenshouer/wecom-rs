@@ -11,9 +11,10 @@ async fn main() -> Result<()> {
 
     let client = Client::new(env::var("CORP_ID")?, env::var("CORP_SECRET")?);
 
-    let departments = client.department_list(None).await?;
-
-    debug!("department_list: {}", serde_json::to_string(&departments)?);
+    // let departments = client.department_list(None).await?;
+    // let departments = client.department_sample_list(None).await?;
+    let departments = client.department_get(1).await?;
+    debug!("{}", serde_json::to_string(&departments)?);
 
     Ok(())
 }

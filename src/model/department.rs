@@ -1,8 +1,8 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize, Default)]
-pub struct DepartmentList {
-    department: Vec<Department>,
+pub struct DepartmentList<T> {
+    department: T,
 }
 
 #[derive(Debug, Deserialize, Serialize, Default)]
@@ -19,5 +19,21 @@ pub struct Department {
     ///	父部门id。根部门为1
     pub parentid: u64,
     ///	在父部门中的次序值。order值大的排序靠前。值范围是[0, 2^32)
+    pub order: u64,
+}
+
+#[derive(Debug, Deserialize, Serialize, Default)]
+pub struct DepartmentSimpleList {
+    department_id: Vec<DepartmentSimple>,
+}
+
+#[derive(Debug, Deserialize, Serialize, Default)]
+pub struct DepartmentSimple {
+    ///	创建的部门id
+    pub id: u64,
+    ///	父部门id。根部门为1。
+    #[serde(rename = "parentid")]
+    pub parent_id: u64,
+    ///	在父部门中的次序值。order值大的排序靠前。值范围是[0, 2^32)。
     pub order: u64,
 }
