@@ -36,8 +36,11 @@ async fn main() -> Result<()> {
     // let uids_delete = vec!["test20220630@ipalfish.com"];
     // client.user_batch_delete(&uids_delete).await?;
 
-    let users = client.user_list(1361979).await?;
-    debug!("user_list: {}", serde_json::to_string(&users)?);
+    // let users = client.user_list(1361979).await?;
+    // debug!("user_list: {}", serde_json::to_string(&users)?);
+
+    let user_id = client.userid_get("18612424366").await?;
+    debug!("user_id: {user_id}");
 
     Ok(())
 }
