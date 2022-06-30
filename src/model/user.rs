@@ -1,6 +1,12 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize, Default)]
+pub struct UserList {
+    #[serde(rename = "userlist")]
+    user_list: Vec<User>,
+}
+
+#[derive(Debug, Deserialize, Serialize, Default)]
 pub struct User {
     /// 成员UserID。对应管理端的帐号，企业内必须唯一。不区分大小写，长度为1~64个字节
     #[serde(rename = "userid")]

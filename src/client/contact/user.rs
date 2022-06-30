@@ -2,7 +2,7 @@ use crate::{
     client::{Client, BASE_URL},
     dto::user::*,
     error::Result,
-    model::{Response, User},
+    model::{Response, User, UserList},
 };
 use async_trait::async_trait;
 use reqwest::Method;
@@ -14,10 +14,14 @@ pub trait UserManager {
     async fn user_create(&self, params: ParamsCreateUser) -> Result<()>;
     /// 读取成员
     async fn user_get(&self, user_id: &str) -> Result<User>;
+    /// 更新成员
+    async fn user_update(&self, params: ParamsUpdateUser) -> Result<()>;
     /// 删除成员
     async fn user_delete(&self, user_id: &str) -> Result<()>;
     /// 批量删除成员
     async fn user_batch_delete(&self, userids: &[&str]) -> Result<()>;
+    /// 获取部门成员
+    async fn user_list(&self, department_id: u64) -> Result<UserList>;
 }
 
 #[async_trait]
@@ -48,7 +52,22 @@ impl UserManager for Client {
 
         Ok(resp.data)
     }
+    async fn user_update(&self, params: ParamsUpdateUser) -> Result<()> {
+        if params.is_empty() {
+            return Err(crate::error::Error::EmptyFiledsUpdate);
+        }
+        let token = self.access_token().await?;
+        self.request::<Response<()>>(
+            Method::POST,
+            &format!("{BASE_URL}/user/update?access_token={token}"),
+            Some(serde_json::to_value(params)?),
+        )
+        .await?;
 
+        Ok(())
+    }
+
+    /// https://developer.work.weixin.qq.com/document/path/90198
     async fn user_delete(&self, user_id: &str) -> Result<()> {
         let token = self.access_token().await?;
         self.request::<Response<()>>(
@@ -61,6 +80,7 @@ impl UserManager for Client {
         Ok(())
     }
 
+    /// https://developer.work.weixin.qq.com/document/path/90199
     async fn user_batch_delete(&self, userids: &[&str]) -> Result<()> {
         let token = self.access_token().await?;
         self.request::<Response<()>>(
@@ -71,5 +91,19 @@ impl UserManager for Client {
         .await?;
 
         Ok(())
+    }
+
+    /// https://developer.work.weixin.qq.com/document/path/90201
+    async fn user_list(&self, department_id: u64) -> Result<UserList> {
+        let token = self.access_token().await?;
+        let resp = self
+            .request::<Response<UserList>>(
+                Method::GET,
+                &format!("{BASE_URL}/user/list?access_token={token}&department_id={department_id}"),
+                None,
+            )
+            .await?;
+
+        Ok(resp.data)
     }
 }

@@ -46,7 +46,7 @@ mod token;
 pub(crate) use token::Token;
 
 mod user;
-pub use user::User;
+pub use user::{User, UserList};
 
 mod department;
 pub use department::{Department, DepartmentList};

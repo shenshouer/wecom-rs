@@ -5,16 +5,19 @@ pub type Result<T> = core::result::Result<T, Error>;
 
 #[derive(Error, Debug)]
 pub enum Error {
-    // http error
+    /// http error
     #[error("request url:{url} error, statusCode:{status_code}, message:{message}")]
     HttpError {
         url: String,
         status_code: StatusCode,
         message: String,
     },
-    // API error
+    /// API error
     #[error("errcode: {code}, errmsg: {message}")]
     ApiError { code: u64, message: String },
+    /// 更新时空子段
+    #[error("empty fileds when update")]
+    EmptyFiledsUpdate,
     #[error(transparent)]
     Reqwest(#[from] reqwest::Error),
     #[error(transparent)]
