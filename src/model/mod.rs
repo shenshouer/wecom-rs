@@ -44,5 +44,9 @@ where
 /// token
 mod token;
 pub(crate) use token::Token;
+
 mod user;
 pub use user::User;
+
+mod department;
+pub use department::{Department, DepartmentList};

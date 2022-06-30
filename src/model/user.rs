@@ -14,7 +14,7 @@ pub struct User {
     ///	成员所属部门id列表，仅返回该应用有查看权限的部门id；成员授权模式下，固定返回根部门id，即固定为1。对授权了“组织架构信息”权限的第三方应用，返回成员所属的全部部门id
     pub department: Vec<u64>,
     /// 部门内的排序值，默认为0。数量必须和department一致，数值越大排序越前面。值范围是0, 2^32)。[成员授权模式下不返回该字段
-    pub order: Vec<u16>,
+    pub order: Vec<u64>,
     /// 职务信息；代开发自建应用需要管理员授权才返回；第三方仅通讯录应用可获取；对于非第三方创建的成员，第三方通讯录应用也不可获取；上游企业不可获取下游企业成员该字段
     pub position: String,
     /// 性别。0表示未定义，1表示男性，2表示女性。代开发自建应用需要管理员授权且成员oauth2授权获取；第三方仅通讯录应用可获取；对于非第三方创建的成员，第三方通讯录应用也不可获取；上游企业不可获取下游企业成员该字段。注：不可获取指返回值0
@@ -38,21 +38,82 @@ pub struct User {
     ///	别名；第三方仅通讯录应用可获取；对于非第三方创建的成员，第三方通讯录应用也不可获取；上游企业不可获取下游企业成员该字段
     pub alias: String,
     ///	扩展属性，代开发自建应用需要管理员授权才返回；第三方仅通讯录应用可获取；对于非第三方创建的成员，第三方通讯录应用也不可获取；上游企业不可获取下游企业成员该字段
-    pub extattr: serde_json::Value,
+    pub extattr: Option<ExtAttributes>,
     ///	激活状态: 1=已激活，2=已禁用，4=未激活，5=退出企业。
     /// 已激活代表已激活企业微信或已关注微信插件（原企业号）。未激活代表既未激活企业微信又未关注微信插件（原企业号）。
     pub status: u16,
     ///	员工个人二维码，扫描可添加为外部联系人(注意返回的是一个url，可在浏览器上打开该url以展示二维码)；代开发自建应用需要管理员授权且成员oauth2授权获取；第三方仅通讯录应用可获取；对于非第三方创建的成员，第三方通讯录应用也不可获取；上游企业不可获取下游企业成员该字段
     pub qr_code: String,
     ///	成员对外属性，字段详情见对外属性；代开发自建应用需要管理员授权才返回；第三方仅通讯录应用可获取；对于非第三方创建的成员，第三方通讯录应用也不可获取；上游企业不可获取下游企业成员该字段
-    pub external_profile: serde_json::Value,
+    pub external_profile: Option<ExternalProfile>,
     ///	对外职务，如果设置了该值，则以此作为对外展示的职务，否则以position来展示。代开发自建应用需要管理员授权才返回；第三方仅通讯录应用可获取；对于非第三方创建的成员，第三方通讯录应用也不可获取；上游企业不可获取下游企业成员该字段
     pub external_position: Option<String>,
     ///	地址。代开发自建应用需要管理员授权且成员oauth2授权获取；第三方仅通讯录应用可获取；对于非第三方创建的成员，第三方通讯录应用也不可获取；上游企业不可获取下游企业成员该字段
-    pub address: String,
+    pub address: Option<String>,
     ///	全局唯一。对于同一个服务商，不同应用获取到企业内同一个成员的open_userid是相同的，最多64个字节。仅第三方应用可获取
     pub open_userid: Option<String>,
     ///	主部门，仅当应用对主部门有查看权限时返回。
     pub main_department: u64,
     pub enable: u8,
+}
+
+#[derive(Debug, Deserialize, Serialize, Default)]
+pub struct ExtAttributes {
+    attrs: Vec<ExtAttribute>,
+}
+
+#[derive(Debug, Deserialize, Serialize, Default)]
+pub struct ExtAttribute {
+    /// 属性类型: 0-文本 1-网页 2-小程序
+    #[serde(rename = "type")]
+    kind: u8,
+    /// 属性名称： 需要先确保在管理端有创建该属性，否则会忽略
+    name: String,
+    /// 文本类型的属性
+    #[serde(skip_serializing_if = "Option::is_none")]
+    text: Option<TextAttribute>,
+    /// 网页类型的属性，url和title字段要么同时为空表示清除该属性，要么同时不为空
+    #[serde(skip_serializing_if = "Option::is_none")]
+    web: Option<WebAttribute>,
+    #[serde(rename = "miniprogram", skip_serializing_if = "Option::is_none")]
+    mini_program: Option<MiniProgramAttribute>,
+}
+
+#[derive(Debug, Deserialize, Serialize, Default)]
+pub struct TextAttribute {
+    /// 文本属性内容，长度限制64个UTF8字符
+    value: String,
+}
+
+#[derive(Debug, Deserialize, Serialize, Default)]
+pub struct WebAttribute {
+    /// 网页的url,必须包含http或者https头
+    url: String,
+    ///	网页的展示标题,长度限制12个UTF8字符
+    title: String,
+}
+
+#[derive(Debug, Deserialize, Serialize, Default)]
+pub struct MiniProgramAttribute {
+    #[serde(rename = "appid")]
+    app_id: String,
+    #[serde(rename = "pagepath")]
+    page_path: String,
+    title: String,
+}
+
+#[derive(Debug, Deserialize, Serialize, Default)]
+pub struct ExternalProfile {
+    /// 企业简称
+    #[serde(skip_serializing_if = "Option::is_none")]
+    external_corp_name: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    wechat_channels: Option<WechatChannel>,
+    external_attr: Vec<ExtAttribute>,
+}
+
+#[derive(Debug, Deserialize, Serialize, Default)]
+pub struct WechatChannel {
+    nickname: String,
+    status: u8,
 }

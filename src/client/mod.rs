@@ -1,10 +1,9 @@
 pub use crate::dto::*;
-use crate::model::{Response, Responser, Token, User};
 use crate::{
     error::{new_api_error, Result},
+    model::{Responser, Token},
     utils::http::{do_http, PostParameters},
 };
-use async_trait::async_trait;
 use reqwest::Method;
 use serde::de::DeserializeOwned;
 use serde_json::{json, Value};
@@ -57,6 +56,7 @@ impl Client {
         } else {
             None
         };
+
         let resp = do_http(method, url, None, None, body)
             .await?
             .json::<R>()
@@ -65,36 +65,26 @@ impl Client {
         if resp.error_code() != 0 {
             return Err(new_api_error(resp.error_code(), resp.error_message()));
         }
-
         Ok(resp)
 
         // 调试使用，验证输出结果
-        // let resp = do_http(method, url, None, None, body)
-        //     .await?
-        //     .text()
-        //     .await?;
+        // let resp = do_http(method, url, None, None, body).await?.text().await?;
         // println!("{resp}");
-        // Ok(Response::default().data)
+        // Ok(crate::model::Response::default().data)
     }
 }
 
+pub trait ContactManager: DepartmentManager + UserManager {}
+impl ContactManager for Client {}
+
+// /// 客户管理
+// pub trait ExternalContactManager {
+//     // TODO:
+// }
+
+// pub trait CustomerServiceManager {
+//     // TODO:
+// }
 /// 通讯录管理
-#[async_trait]
-pub trait ContactManager {
-    // 成员管理
-    /// 创建成员
-    async fn user_create(&self) -> Result<()>;
-    /// 读取成员
-    async fn user_get(&self, user_id: &str) -> Result<User>;
-}
-
-/// 客户管理
-pub trait ExternalContactManager {
-    // TODO:
-}
-
-pub trait CustomerServiceManager {
-    // TODO:
-}
-
-mod contact;
+pub mod contact;
+pub use contact::{DepartmentManager, UserManager};
