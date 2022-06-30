@@ -9,3 +9,7 @@
 ## examples
 
 [examples](./examples)
+
+### run examples
+
+将 `.env.sample` 改名为 `.env`, 替换`.env`中的`CORP_ID`与`CORP_SECRET`
