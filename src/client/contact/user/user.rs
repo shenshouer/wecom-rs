@@ -1,7 +1,6 @@
-use super::UserManager;
+use super::*;
 use crate::{
     client::{Client, BASE_URL},
-    dto::user::*,
     error::Result,
     model::{Response, User, UserList},
 };

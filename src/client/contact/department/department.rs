@@ -1,7 +1,6 @@
-use super::DepartmentManager;
+use super::*;
 use crate::{
     client::{Client, BASE_URL},
-    dto::{ParamsCreateDepartment, ParamsUpdateDepartment},
     error::Result,
     model::{Department, DepartmentList, DepartmentSimpleList, Response},
 };
