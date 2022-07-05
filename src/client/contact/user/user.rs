@@ -33,7 +33,7 @@ impl UserManager for Client {
             )
             .await?;
 
-        Ok(resp.data)
+        Ok(resp.data.unwrap())
     }
     async fn user_update(&self, params: ParamsUpdateUser) -> Result<()> {
         if params.is_empty() {
@@ -87,7 +87,7 @@ impl UserManager for Client {
             )
             .await?;
 
-        Ok(resp.data)
+        Ok(resp.data.unwrap())
     }
 
     /// https://developer.work.weixin.qq.com/document/path/95402
@@ -101,7 +101,7 @@ impl UserManager for Client {
             )
             .await?;
 
-        Ok(resp.data.userid)
+        Ok(resp.data.unwrap().userid)
     }
 }
 

@@ -66,7 +66,7 @@ impl DepartmentManager for Client {
             .request::<Response<DepartmentList<Vec<Department>>>>(Method::GET, &url, None)
             .await?;
 
-        Ok(resp.data)
+        Ok(resp.data.unwrap())
     }
 
     /// https://developer.work.weixin.qq.com/document/path/95350
@@ -82,7 +82,7 @@ impl DepartmentManager for Client {
             .request::<Response<DepartmentSimpleList>>(Method::GET, &url, None)
             .await?;
 
-        Ok(resp.data)
+        Ok(resp.data.unwrap())
     }
 
     /// https://developer.work.weixin.qq.com/document/path/95351
@@ -96,6 +96,6 @@ impl DepartmentManager for Client {
             )
             .await?;
 
-        Ok(resp.data)
+        Ok(resp.data.unwrap())
     }
 }

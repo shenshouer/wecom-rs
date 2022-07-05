@@ -20,6 +20,6 @@ impl OnJobInheritManager for Client {
             )
             .await?;
 
-        Ok(resp.data)
+        Ok(resp.data.unwrap())
     }
 }

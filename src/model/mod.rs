@@ -12,7 +12,7 @@ pub(crate) struct Response<T> {
     #[serde(rename = "errmsg")]
     err_msg: String,
     #[serde(flatten)]
-    pub data: T,
+    pub data: Option<T>,
 }
 
 impl<T> Responser for Response<T>

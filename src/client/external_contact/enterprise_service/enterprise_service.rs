@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 impl EnterpriseServiceManager for Client {
     /// https://developer.work.weixin.qq.com/document/path/92571
     async fn get_follow_user_list(&self) -> Result<Vec<String>> {
-        let token = self.access_token().await?;
+        let token = self.custom_contact_access_token().await?;
         let resp = self
             .request::<Response<FollowUserList>>(
                 Method::GET,
@@ -17,7 +17,7 @@ impl EnterpriseServiceManager for Client {
             )
             .await?;
 
-        Ok(resp.data.follow_user)
+        Ok(resp.data.unwrap().follow_user)
     }
 }
 

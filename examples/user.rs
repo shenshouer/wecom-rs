@@ -1,6 +1,5 @@
 use anyhow::Result;
 use dotenv::dotenv;
-use std::env;
 use tracing::debug;
 use wecom_rs::{Client, UserManager};
 
@@ -9,7 +8,7 @@ async fn main() -> Result<()> {
     dotenv().ok();
     tracing_subscriber::fmt::init();
 
-    let client = Client::new(env::var("CORP_ID")?, env::var("CORP_SECRET")?);
+    let client = Client::new_from_env()?;
 
     // client
     //     .user_create(wecom_rs::client::ParamsCreateUser::new_simple(

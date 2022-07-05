@@ -26,6 +26,8 @@ pub enum Error {
     InvalidHeaderName(#[from] reqwest::header::InvalidHeaderName),
     #[error(transparent)]
     Serde(#[from] serde_json::Error),
+    #[error(transparent)]
+    VarError(#[from] std::env::VarError),
 }
 
 pub fn new_http_error(url: String, status_code: StatusCode, message: String) -> Error {

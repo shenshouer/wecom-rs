@@ -1,6 +1,5 @@
 use anyhow::Result;
 use dotenv::dotenv;
-use std::env;
 use tracing::debug;
 use wecom_rs::{Client, DepartmentManager};
 
@@ -9,7 +8,7 @@ async fn main() -> Result<()> {
     dotenv().ok();
     tracing_subscriber::fmt::init();
 
-    let client = Client::new(env::var("CORP_ID")?, env::var("CORP_SECRET")?);
+    let client = Client::new_from_env()?;
 
     // let departments = client.department_list(None).await?;
     // let departments = client.department_sample_list(None).await?;
