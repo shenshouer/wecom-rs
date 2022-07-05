@@ -6,6 +6,7 @@ use crate::{
 use reqwest::Method;
 use serde::de::DeserializeOwned;
 use serde_json::{json, Value};
+use std::env;
 
 const BASE_URL: &str = "https://qyapi.weixin.qq.com/cgi-bin";
 
@@ -13,20 +14,60 @@ const BASE_URL: &str = "https://qyapi.weixin.qq.com/cgi-bin";
 pub struct Client {
     pub(crate) corp_id: String,
     pub(crate) corp_secret: String,
+    /// 客户联系专用
+    pub(crate) custom_contact_secret: Option<String>,
 }
 
 impl Client {
-    pub fn new(corp_id: String, corp_secret: String) -> Client {
+    pub fn new(
+        corp_id: String,
+        corp_secret: String,
+        custom_contact_secret: Option<String>,
+    ) -> Client {
         Self {
             corp_id,
             corp_secret,
+            custom_contact_secret,
         }
+    }
+
+    pub fn new_from_env() -> Result<Self> {
+        let custom_contact_secret = if let Ok(ccs) = env::var("CUSTOM_CONTACT_SECRET") {
+            Some(ccs)
+        } else {
+            None
+        };
+        Ok(Self {
+            corp_id: env::var("CORP_ID")?,
+            corp_secret: env::var("CORP_SECRET")?,
+            custom_contact_secret,
+        })
     }
 
     async fn access_token(&self) -> Result<String> {
         let query_body = json!({
             "corpid": self.corp_id,
             "corpsecret": self.corp_secret,
+        });
+
+        let resp = do_http(
+            Method::GET,
+            &format!("{}/gettoken", BASE_URL),
+            None,
+            Some(query_body),
+            None,
+        )
+        .await?;
+
+        let data = resp.json::<Token>().await?;
+
+        Ok(data.access_token)
+    }
+
+    async fn custom_contact_access_token(&self) -> Result<String> {
+        let query_body = json!({
+            "corpid": self.corp_id,
+            "corpsecret": self.custom_contact_secret,
         });
 
         let resp = do_http(
@@ -69,7 +110,7 @@ impl Client {
         // 调试使用，验证输出结果
         // let resp = do_http(method, url, None, None, body).await?.text().await?;
         // println!("{resp}");
-        // Ok(crate::model::Response::default().data)
+        // Ok(crate::model::Response::default().data.unwrap())
     }
 }
 
