@@ -22,11 +22,19 @@ async fn main() -> Result<()> {
     //     serde_json::to_string(&transfer_result)?
     // );
 
-    use wecom_rs::EnterpriseServiceManager;
-    let contact_way_list = c.contact_way_list(None).await?;
+    // use wecom_rs::EnterpriseServiceManager;
+    // let contact_way_list = c.contact_way_list(None).await?;
+    // info!(
+    //     "contact_way_list: {}",
+    //     serde_json::to_string(&contact_way_list)?
+    // );
+
+    use wecom_rs::LeaveJobInheritManager;
+    let params = wecom_rs::ParamsUnassignedList::default();
+    let unassigned_list = c.unassigned_list(params).await?;
     info!(
-        "contact_way_list: {}",
-        serde_json::to_string(&contact_way_list)?
+        "unassigned_list: {}",
+        serde_json::to_string(&unassigned_list)?
     );
 
     Ok(())

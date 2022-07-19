@@ -19,8 +19,8 @@ mod on_job_inherit;
 pub use on_job_inherit::*;
 
 /// 离职继承
-#[async_trait]
-pub trait LeaveJobInheritManager {}
+mod leave_job_inherit;
+pub use leave_job_inherit::*;
 
 /// 客户群管理
 #[async_trait]
