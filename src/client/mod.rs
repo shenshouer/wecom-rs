@@ -4,9 +4,10 @@ use crate::{
     utils::http::{do_http, PostParameters},
 };
 use reqwest::Method;
-use serde::de::DeserializeOwned;
+use serde::{de::DeserializeOwned, ser::Serialize};
 use serde_json::{json, Value};
 use std::env;
+use tracing::debug;
 
 const BASE_URL: &str = "https://qyapi.weixin.qq.com/cgi-bin";
 
@@ -85,7 +86,7 @@ impl Client {
     }
 
     // http 请求
-    async fn request<R: Responser + DeserializeOwned + Default>(
+    async fn request<R: Responser + DeserializeOwned + Serialize + Default>(
         &self,
         method: Method,
         url: &str,
@@ -102,15 +103,11 @@ impl Client {
             .json::<R>()
             .await?;
 
+        debug!("\nurl:{url} \nresponse: {}", serde_json::to_string(&resp)?);
         if resp.error_code() != 0 {
             return Err(new_api_error(resp.error_code(), resp.error_message()));
         }
         Ok(resp)
-
-        // 调试使用，验证输出结果
-        // let resp = do_http(method, url, None, None, body).await?.text().await?;
-        // println!("{resp}");
-        // Ok(crate::model::Response::default().data.unwrap())
     }
 }
 

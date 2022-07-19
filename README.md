@@ -26,6 +26,17 @@
     - [ ] 互联企业
     - [ ] 异步导出接口
 - [ ] 客户联系
+    - [✓] 企业服务人员管理 [实现](./src/client/external_contact/enterprise_service/mod.rs) [示例](./examples/external_contact.rs)
+    - [ ] 客户管理
+    - [ ] 客户标签管理
+    - [WIP] 在职继承 [实现](./src/client/external_contact/on_job_inherit/mod.rs)
+    - [ ] 离职继承
+    - [ ] 客户群管理
+    - [ ] 联系我与客户入群方式
+    - [ ] 客户朋友圈
+    - [ ] 消息推送
+    - [ ] 统计管理
+    - [ ] 变更回调
 - [ ] 微信客户
 - [ ] 身份验证
 - [ ] 应用管理
