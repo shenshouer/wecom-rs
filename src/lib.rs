@@ -8,3 +8,4 @@ pub use error::Result;
 mod model;
 /// 辅助工具
 mod utils;
+pub use utils::crypto;

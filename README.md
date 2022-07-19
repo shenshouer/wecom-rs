@@ -18,6 +18,7 @@
 ## todo list
 
 - [✓] 获取access_token [实现](./src/client/mod.rs)
+- [✓] 加解密 [实现](./src/utils/crypto.rs)
 - [ ] 通讯录管理
     - [✓] 成员管理 [实现](./src/client/contact/user/mod.rs) [示例](./examples/user.rs)
     - [✓] 部门管理 [实现](./src/client/contact/department/mod.rs) [示例](./examples/department.rs)

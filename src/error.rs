@@ -18,6 +18,8 @@ pub enum Error {
     /// 更新时空子段
     #[error("empty fileds when update")]
     EmptyFiledsUpdate,
+    #[error("{0}")]
+    General(String),
     #[error(transparent)]
     Reqwest(#[from] reqwest::Error),
     #[error(transparent)]
