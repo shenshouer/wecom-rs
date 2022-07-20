@@ -24,3 +24,5 @@ mod department;
 pub use department::*;
 mod user;
 pub use user::*;
+/// 通讯录回调通知
+mod callback_notify;

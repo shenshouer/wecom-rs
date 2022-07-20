@@ -130,5 +130,6 @@ pub use app::*;
 /// 消息推送
 mod message_push;
 pub use message_push::*;
-
+/// 事件定义
+pub mod event;
 // TODO: 其他功能模块接口实现

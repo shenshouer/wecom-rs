@@ -19,11 +19,13 @@
 
 - [✓] 获取access_token [实现](./src/client/mod.rs)
 - [✓] 加解密 [实现](./src/utils/crypto.rs)
+- [ ] 推广二维码
 - [ ] 通讯录管理
     - [✓] 成员管理 [实现](./src/client/contact/user/mod.rs) [示例](./examples/user.rs)
     - [✓] 部门管理 [实现](./src/client/contact/department/mod.rs) [示例](./examples/department.rs)
     - [ ] 标签管理
     - [ ] 异步批量接口
+    - [ ] 通讯录回调通知
     - [ ] 互联企业
     - [ ] 异步导出接口
 - [ ] 客户联系
