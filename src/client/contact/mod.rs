@@ -1,8 +1,8 @@
 use async_trait::async_trait;
 
-/// 一部批量接口
-#[async_trait]
-pub trait AsyncBatchApi {}
+/// 异步批量接口
+mod async_batch;
+pub use async_batch::*;
 
 /// 通讯录回调通知
 #[async_trait]
