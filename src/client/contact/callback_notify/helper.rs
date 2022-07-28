@@ -1,4 +1,4 @@
-use serde::{de::Deserializer, de::Error, Deserialize, Serialize};
+use serde::{de::Deserializer, de::Error, Deserialize};
 
 pub fn str_to_i8_vec<'de, D>(deserializer: D) -> Result<Vec<i8>, D::Error>
 where

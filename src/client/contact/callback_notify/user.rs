@@ -4,7 +4,8 @@ use super::helper::{
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct Xml {
+#[serde(rename = "xml")]
+pub struct EventUserCreate {
     /// 第三方应用ID
     #[serde(rename = "SuiteId")]
     pub suite_id: String,
@@ -169,7 +170,7 @@ mod tests {
             </ExtAttr>
         </xml>"##;
 
-        let xml: Xml = from_str(xml_str)?;
+        let xml: EventUserCreate = from_str(xml_str)?;
         assert_eq!(xml.suite_id, "ww4asffe99e54c0f4c");
         Ok(())
     }
