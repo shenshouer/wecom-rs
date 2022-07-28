@@ -23,7 +23,7 @@
 - [ ] 通讯录管理
     - [✓] 成员管理 [实现](./src/client/contact/user/mod.rs) [示例](./examples/user.rs)
     - [✓] 部门管理 [实现](./src/client/contact/department/mod.rs) [示例](./examples/department.rs)
-    - [ ] 标签管理
+    - [✓] 标签管理 [实现](./src/client/contact/tag/mod.rs) [示例](./examples/tag.rs)
     - [ ] 异步批量接口
     - [ ] 通讯录回调通知
     - [ ] 互联企业
