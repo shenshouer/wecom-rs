@@ -1,7 +1,4 @@
-use crate::{
-    error::Result,
-    model::{Department, DepartmentList, DepartmentSimpleList},
-};
+use crate::error::Result;
 use async_trait::async_trait;
 
 /// 部门管理
@@ -22,5 +19,9 @@ pub trait DepartmentManager {
 }
 
 mod department;
+
 mod dto;
 pub use dto::*;
+
+mod model;
+pub use model::*;

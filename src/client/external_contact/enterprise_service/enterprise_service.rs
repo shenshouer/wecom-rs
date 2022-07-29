@@ -2,7 +2,7 @@ use super::{
     ContactWay, EnterpriseServiceManager, ParamsContactWayCreate, ParamsContactWayList,
     ParamsContactWayUpdate, RespContactWayCreate,
 };
-use crate::{client::BASE_URL, model::Response, Client, Result};
+use crate::{client::BASE_URL, common::model::Response, Client, Result};
 use async_trait::async_trait;
 use reqwest::Method;
 use serde::{Deserialize, Serialize};

@@ -2,7 +2,10 @@ use super::{
     Customer, FailedChat, LeaveJobInheritManager, ParamsTransferCustomer, ParamsUnassignedList,
     ResponseUnassignedList, TransferCustomer, TransferResult,
 };
-use crate::{client::BASE_URL, model::Response, Client, Result};
+use crate::{
+    client::{common::model::Response, BASE_URL},
+    Client, Result,
+};
 use async_trait::async_trait;
 use reqwest::Method;
 

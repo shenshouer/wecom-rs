@@ -1,7 +1,4 @@
-use crate::{
-    error::Result,
-    model::{User, UserList},
-};
+use crate::error::Result;
 use async_trait::async_trait;
 
 /// 成员管理
@@ -24,5 +21,9 @@ pub trait UserManager {
 }
 
 mod dto;
-mod user;
 pub use dto::*;
+
+mod model;
+pub use model::*;
+
+mod user;

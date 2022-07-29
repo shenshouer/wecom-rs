@@ -1,8 +1,8 @@
 use crate::{
     error::{new_api_error, Result},
-    model::{Responser, Token},
     utils::http::{do_http, PostParameters},
 };
+use common::model::{Responser, Token};
 use reqwest::Method;
 use serde::{de::DeserializeOwned, ser::Serialize};
 use serde_json::{json, Value};
@@ -133,3 +133,6 @@ pub use message_push::*;
 /// 事件定义
 pub mod event;
 // TODO: 其他功能模块接口实现
+
+/// 公共组件
+pub mod common;

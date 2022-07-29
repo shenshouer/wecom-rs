@@ -4,7 +4,7 @@ use super::{
     },
     TagManager,
 };
-use crate::{client::BASE_URL, error::Error, model::Response, Client, Result};
+use crate::{client::BASE_URL, common::model::Response, error::Error, Client, Result};
 use async_trait::async_trait;
 use reqwest::Method;
 use serde_json::{json, Map, Value};

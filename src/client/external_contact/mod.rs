@@ -7,8 +7,8 @@ mod enterprise_service;
 pub use enterprise_service::*;
 
 /// 客户管理
-#[async_trait]
-pub trait ConstomerManager {}
+mod customer;
+pub use customer::*;
 
 /// 客户标签管理
 #[async_trait]

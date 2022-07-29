@@ -1,8 +1,7 @@
 use super::*;
 use crate::{
-    client::{Client, BASE_URL},
+    client::{common::model::Response, Client, BASE_URL},
     error::Result,
-    model::{Department, DepartmentList, DepartmentSimpleList, Response},
 };
 use async_trait::async_trait;
 use reqwest::Method;
