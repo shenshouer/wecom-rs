@@ -9,8 +9,8 @@ pub use async_batch::*;
 pub trait ContactCallbackNotifyManager {}
 
 /// 互联企业
-#[async_trait]
-pub trait LinkedCorpManager {}
+mod linked_corp;
+pub use linked_corp::*;
 
 /// 异步导出接口
 #[async_trait]

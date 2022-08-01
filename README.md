@@ -26,7 +26,7 @@
     - [✓] 标签管理 [实现](./src/client/contact/tag/mod.rs) [示例](./examples/tag.rs)
     - [WIP] 异步批量接口 [实现](./src/client/contact/async_batch/mod.rs)
     - [ ] 通讯录回调通知
-    - [ ] 互联企业
+    - [WIP] 互联企业 [实现](./src/client/contact/linked_corp/mod.rs)
     - [ ] 异步导出接口
 - [ ] 客户联系
     - [✓] 企业服务人员管理 [实现](./src/client/external_contact/enterprise_service/mod.rs) [示例](./examples/external_contact.rs)
