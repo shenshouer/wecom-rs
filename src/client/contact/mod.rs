@@ -13,8 +13,8 @@ mod linked_corp;
 pub use linked_corp::*;
 
 /// 异步导出接口
-#[async_trait]
-pub trait AsyncExportApi {}
+mod async_export;
+pub use async_export::*;
 
 mod department;
 pub use department::*;

@@ -27,7 +27,7 @@
     - [WIP] 异步批量接口 [实现](./src/client/contact/async_batch/mod.rs)
     - [ ] 通讯录回调通知
     - [WIP] 互联企业 [实现](./src/client/contact/linked_corp/mod.rs)
-    - [ ] 异步导出接口
+    - [WIP] 异步导出接口 [实现](./src/client/contact/async_export/mod.rs)
 - [ ] 客户联系
     - [✓] 企业服务人员管理 [实现](./src/client/external_contact/enterprise_service/mod.rs) [示例](./examples/external_contact.rs)
     - [ ] 客户管理
