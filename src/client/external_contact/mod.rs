@@ -11,8 +11,8 @@ mod customer;
 pub use customer::*;
 
 /// 客户标签管理
-#[async_trait]
-pub trait ConstomerTagManager {}
+mod customer_tag;
+pub use customer_tag::*;
 
 /// 在职继承
 mod on_job_inherit;

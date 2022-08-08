@@ -30,11 +30,11 @@
     - [WIP] 异步导出接口 [实现](./src/client/contact/async_export/mod.rs)
 - [ ] 客户联系
     - [✓] 企业服务人员管理 [实现](./src/client/external_contact/enterprise_service/mod.rs) [示例](./examples/external_contact.rs)
-    - [ ] 客户管理
-    - [ ] 客户标签管理
+    - [WIP] 客户管理 [实现](./src/client/external_contact/customer/mod.rs)
+    - [WIP] 客户标签管理 [实现](./src/client/external_contact/customer_tag/mod.rs)
     - [✓] 在职继承 [实现](./src/client/external_contact/on_job_inherit/mod.rs) [示例](./examples/external_contact.rs)
     - [✓] 离职继承 [实现](./src/client/external_contact/leave_job_inherit/mod.rs) [示例](./examples/external_contact.rs)
-    - [WIP] 客户群管理 [实现](./src/client/external_contact/customer/mod.rs)
+    - [ ] 客户群管理 
     - [ ] 联系我与客户入群方式
     - [ ] 客户朋友圈
     - [ ] 消息推送
