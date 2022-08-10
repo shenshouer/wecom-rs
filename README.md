@@ -20,7 +20,7 @@
 - [✓] 获取access_token [实现](./src/client/mod.rs)
 - [✓] 加解密 [实现](./src/utils/crypto.rs)
 - [ ] 推广二维码
-- [ ] 通讯录管理
+- [WIP] 通讯录管理
     - [✓] 成员管理 [实现](./src/client/contact/user/mod.rs) [示例](./examples/user.rs)
     - [✓] 部门管理 [实现](./src/client/contact/department/mod.rs) [示例](./examples/department.rs)
     - [✓] 标签管理 [实现](./src/client/contact/tag/mod.rs) [示例](./examples/tag.rs)
@@ -28,7 +28,7 @@
     - [ ] 通讯录回调通知
     - [WIP] 互联企业 [实现](./src/client/contact/linked_corp/mod.rs)
     - [WIP] 异步导出接口 [实现](./src/client/contact/async_export/mod.rs)
-- [ ] 客户联系
+- [WIP] 客户联系
     - [✓] 企业服务人员管理 [实现](./src/client/external_contact/enterprise_service/mod.rs) [示例](./examples/external_contact.rs)
     - [WIP] 客户管理 [实现](./src/client/external_contact/customer/mod.rs)
     - [WIP] 客户标签管理 [实现](./src/client/external_contact/customer_tag/mod.rs)

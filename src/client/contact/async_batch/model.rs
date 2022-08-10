@@ -18,9 +18,10 @@ pub struct JobStatus {
     pub result: Vec<Job>,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Default)]
 pub enum JobType {
     /// 增量更新成员
+    #[default]
     #[serde(rename = "sync_user")]
     SyncUser,
     /// 全量覆盖成员
@@ -29,12 +30,6 @@ pub enum JobType {
     /// 全量覆盖部门
     #[serde(rename = "replace_party")]
     ReplaceParty,
-}
-
-impl Default for JobType {
-    fn default() -> Self {
-        JobType::SyncUser
-    }
 }
 
 #[derive(Debug, Deserialize, Serialize, Default)]
