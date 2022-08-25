@@ -24,7 +24,7 @@ pub struct Department {
 
 #[derive(Debug, Deserialize, Serialize, Default)]
 pub struct DepartmentSimpleList {
-    department_id: Vec<DepartmentSimple>,
+    pub department_id: Vec<DepartmentSimple>,
 }
 
 #[derive(Debug, Deserialize, Serialize, Default)]
