@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Deserialize, Serialize, Default)]
 pub struct UserList {
     #[serde(rename = "userlist")]
-    user_list: Vec<User>,
+    pub user_list: Vec<User>,
 }
 
 #[derive(Debug, Deserialize, Serialize, Default)]

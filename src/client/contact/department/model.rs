@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize, Default)]
 pub struct DepartmentList<T> {
-    department: T,
+    pub department: T,
 }
 
 #[derive(Debug, Deserialize, Serialize, Default)]
