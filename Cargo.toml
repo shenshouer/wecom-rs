@@ -1,6 +1,6 @@
 [package]
 name = "wecom-rs"
-version = "0.1.12"
+version = "0.1.13"
 edition = "2021"
 description = "企业微信Rust版SDK"
 license = "MIT OR Apache-2.0"
