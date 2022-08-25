@@ -34,7 +34,7 @@
     - [WIP] 客户标签管理 [实现](./src/client/external_contact/customer_tag/mod.rs)
     - [✓] 在职继承 [实现](./src/client/external_contact/on_job_inherit/mod.rs) [示例](./examples/external_contact.rs)
     - [✓] 离职继承 [实现](./src/client/external_contact/leave_job_inherit/mod.rs) [示例](./examples/external_contact.rs)
-    - [ ] 客户群管理 
+    - [WIP] 客户群管理  [实现](./src/client/external_contact/group_chat/mod.rs)
     - [ ] 联系我与客户入群方式
     - [ ] 客户朋友圈
     - [ ] 消息推送

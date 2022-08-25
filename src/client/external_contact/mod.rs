@@ -23,8 +23,8 @@ mod leave_job_inherit;
 pub use leave_job_inherit::*;
 
 /// 客户群管理
-#[async_trait]
-pub trait ConstomerGroupManager {}
+mod group_chat;
+pub use group_chat::*;
 
 /// 联系我与客户入群方式
 #[async_trait]
