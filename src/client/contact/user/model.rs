@@ -7,14 +7,6 @@ pub struct UserList {
     pub user_list: Vec<User>,
 }
 
-impl FromIterator<User> for UserList {
-    fn from_iter<I: IntoIterator<Item = User>>(iter: I) -> Self {
-        Self {
-            user_list: Vec::from_iter(iter),
-        }
-    }
-}
-
 #[derive(Debug, Deserialize, Serialize, Default)]
 pub struct User {
     /// 成员UserID。对应管理端的帐号，企业内必须唯一。不区分大小写，长度为1~64个字节

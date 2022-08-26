@@ -5,14 +5,6 @@ pub struct DepartmentList<T> {
     pub department: T,
 }
 
-impl FromIterator<Department> for DepartmentList<Vec<Department>> {
-    fn from_iter<I: IntoIterator<Item = Department>>(iter: I) -> Self {
-        Self {
-            department: Vec::from_iter(iter),
-        }
-    }
-}
-
 #[derive(Debug, Deserialize, Serialize, Default)]
 pub struct Department {
     ///	创建的部门id
@@ -33,14 +25,6 @@ pub struct Department {
 #[derive(Debug, Deserialize, Serialize, Default)]
 pub struct DepartmentSimpleList {
     pub department_id: Vec<DepartmentSimple>,
-}
-
-impl FromIterator<DepartmentSimple> for DepartmentSimpleList {
-    fn from_iter<I: IntoIterator<Item = DepartmentSimple>>(iter: I) -> Self {
-        Self {
-            department_id: Vec::from_iter(iter),
-        }
-    }
 }
 
 #[derive(Debug, Deserialize, Serialize, Default)]

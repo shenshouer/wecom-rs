@@ -39,7 +39,7 @@ pub struct Job {
     #[serde(rename = "errmsg")]
     pub err_msg: i64,
     #[serde(flatten, skip_serializing_if = "Option::is_none")]
-    pub user: Option<User>,
+    pub user: Option<UserId>,
     #[serde(flatten, skip_serializing_if = "Option::is_none")]
     pub party: Option<Party>,
 }
@@ -47,7 +47,7 @@ pub struct Job {
 /// 用户相关批量异步接口结果
 /// type为sync_user、replace_user时：
 #[derive(Debug, Deserialize, Serialize, Default)]
-pub struct User {
+pub struct UserId {
     /// 成员UserID。对应管理端的帐号
     pub userid: String,
 }
