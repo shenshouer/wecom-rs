@@ -1,6 +1,6 @@
 [package]
 name = "wecom-rs"
-version = "0.1.14"
+version = "0.1.15"
 edition = "2021"
 description = "企业微信Rust版SDK"
 license = "MIT OR Apache-2.0"
@@ -24,4 +24,4 @@ rand = "0.8.5"
 anyhow = "1.0.57"
 dotenv = "0.15.0"
 tracing-subscriber = "0.3.12"
-quick-xml = { version = "0.23", features = [ "serialize" ] }
+quick-xml = { version = "0.24", features = [ "serialize" ] }

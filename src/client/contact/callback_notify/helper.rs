@@ -37,7 +37,7 @@ pub fn str_to_option_vec<'de, D>(deserializer: D) -> Result<Option<Vec<String>>,
 where
     D: Deserializer<'de>,
 {
-    let s: Option<&str> = Deserialize::deserialize(deserializer)?;
+    let s: Option<&str> = Deserialize::deserialize(deserializer).ok(); // .ok() skip error
     let x = if let Some(s) = s {
         Some(s.split(',').map(|x| x.to_string()).collect())
     } else {
