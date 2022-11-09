@@ -1,4 +1,5 @@
 use crate::{
+    client::common::model::Response,
     error::{new_api_error, Result},
     utils::http::{do_http, PostParameters},
 };
@@ -60,9 +61,17 @@ impl Client {
         )
         .await?;
 
-        let data = resp.json::<Token>().await?;
+        let data = resp.json::<Response<Token>>().await?;
+        if data.err_code != 0 {
+            return Err(new_api_error(data.err_code, data.err_msg));
+        }
+        let token = data.data.unwrap();
+        Ok(token.access_token)
 
-        Ok(data.access_token)
+        // 测试验证
+        // let data = resp.text().await?;
+        // println!("==>> access_token request: {data}");
+        // Ok(String::new())
     }
 
     async fn custom_contact_access_token(&self) -> Result<String> {
@@ -80,9 +89,12 @@ impl Client {
         )
         .await?;
 
-        let data = resp.json::<Token>().await?;
-
-        Ok(data.access_token)
+        let data = resp.json::<Response<Token>>().await?;
+        if data.err_code != 0 {
+            return Err(new_api_error(data.err_code, data.err_msg));
+        }
+        let token = data.data.unwrap();
+        Ok(token.access_token)
     }
 
     // http 请求
