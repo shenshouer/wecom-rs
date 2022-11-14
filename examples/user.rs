@@ -27,8 +27,8 @@ async fn main() -> Result<()> {
     //     })
     //     .await?;
 
-    // let user = client.user_get("test20220630@ipalfish.com").await?;
-    // debug!("user_get: {}", serde_json::to_string(&user)?);
+    let user = client.user_get("test20221111@ipalfish.com").await?;
+    debug!("user_get: {}", serde_json::to_string(&user)?);
 
     // client.user_delete("test20220630@ipalfish.com").await?;
 
@@ -38,8 +38,8 @@ async fn main() -> Result<()> {
     // let users = client.user_list(1361979).await?;
     // debug!("user_list: {}", serde_json::to_string(&users)?);
 
-    let user_id = client.userid_get("18612424366").await?;
-    debug!("user_id: {user_id}");
+    // let user_id = client.userid_get("18612424366").await?;
+    // debug!("user_id: {user_id}");
 
     Ok(())
 }
